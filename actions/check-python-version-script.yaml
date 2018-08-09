@@ -1,0 +1,14 @@
+---
+name: check-python-version-script
+description: Check Python version on host
+pack: tutorials
+runner_type: python-script
+entry_point: check-python-version-script.py
+enabled: true
+parameters:
+  major:
+    type: boolean
+    description: Include the major part of the version string
+  minor:
+    type: boolean
+    description: Include the minor part of the version string
