@@ -1,0 +1,13 @@
+---
+name: gather-versions
+description: Get the versions of installed software
+pack: tutorials
+runner_type: action-chain
+entry_point: workflows/gather-versions.yaml
+enabled: true
+parameters:
+  mockable_demo:
+    type: string
+    description: The mockable.io demo subdomain
+    immutable: true
+    default: demo2872707

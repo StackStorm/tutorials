@@ -1,0 +1,48 @@
+---
+version: "2.0"
+
+tutorials.gather-node-versions:
+  description: >
+    A Mistral workflow that gathers Node.js versions and reports them to an
+    HTTP API
+  type: direct
+  input:
+    - mockable_demo
+    - component
+  output:
+    stdout: <% $.stdout %>
+  tasks:
+    check_node_major_version:
+      action: tutorials.check-node-version
+      input:
+        major: true
+        minor: false
+      publish:
+        stdout: <% task(check_node_major_version).result.stdout %>
+        stderr: <% task(check_node_major_version).result.stderr %>
+      on-success:
+        check_node_minor_version
+
+    check_node_minor_version:
+      action: tutorials.check-node-version
+      input:
+        major: false
+        minor: true
+      publish:
+        stdout: <% task(check_node_minor_version).result.stdout %>
+        stderr: <% task(check_node_minor_version).result.stderr %>
+      on-success:
+        report_node_version
+
+    report_node_version:
+      action: core.http
+      input:
+        method: POST
+        url: "http://<% $.mockable_demo %>.mockable.io/versions"
+        headers:
+          Content-Type: application/json
+        body: "{
+            \"component\": \"<% $.component %>\",
+            \"major\": \"<% task(check_node_major_version).result.stdout %>\",
+            \"minor\": \"<% task(check_node_minor_version).result.stdout %>\"
+          }"

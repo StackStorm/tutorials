@@ -1,0 +1,37 @@
+---
+chain:
+  - name: gather_bash_versions
+    ref: tutorials.gather-bash-versions
+    parameters:
+      mockable_demo: "{{ mockable_demo }}"
+      component: bash
+    on-success: gather_python_versions
+    on-failure: gather_python_versions
+
+  - name: gather_python_versions
+    ref: tutorials.gather-python-versions
+    parameters:
+      mockable_demo: "{{ mockable_demo }}"
+      component: python
+    on-success: gather_node_versions
+    on-failure: gather_node_versions
+
+  - name: gather_node_versions
+    ref: tutorials.gather-node-versions
+    parameters:
+      mockable_demo: "{{ mockable_demo }}"
+      component: node.js
+    on-success: report_success
+    on-failure: generate_uuid
+
+  - name: report_success
+    ref: core.local
+    parameters:
+      cmd: echo 'Success!'
+
+  - name: generate_uuid
+    ref: core.uuid
+    parameters:
+      uuid_type: uuid4
+
+default: gather_bash_versions
