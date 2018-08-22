@@ -1,0 +1,10 @@
+title: StackStorm Tutorials
+description: A collection of short videos showing different features of StackStorm
+theme: jekyll-theme-slate
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: true
+github: [metadata]
+exclude: ["vendor", "actions/workflows/gather-*-versions.yaml"]
