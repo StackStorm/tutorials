@@ -1,0 +1,12 @@
+.envrc
+.st2.conf
+.venv/
+.venv3k/
+vendor/
+
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+.bundle/
+Gemfile.lock
