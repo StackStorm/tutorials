@@ -1,0 +1,10 @@
+---
+ref: tutorials
+name: StackStorm Tutorials
+description: Simple pack containing examples for StackStorm tutorials
+keywords:
+  - example
+  - tutorials
+version: 0.0.1
+author: StackStorm, Inc.
+email: info@stackstorm.com
