@@ -1,0 +1,27 @@
+---
+name: get-todo-json
+description: Get a JSON representation of a TODO list item
+pack: tutorials
+runner_type: http-request
+entry_point: ''
+enabled: true
+parameters:
+  subdomain:
+    type: string
+    default: jsonplaceholder
+  domain:
+    type: string
+    default: typicode.com
+  path:
+    type: string
+    default: todos
+  todo_number:
+    type: integer
+    default: 1
+  url:
+    type: string
+    default: https://{{ subdomain }}.{{ domain }}/{{ path }}/{{ todo_number | string }}
+  method:
+    type: string
+    default: GET
+    immutable: true
