@@ -1,0 +1,20 @@
+---
+name: webhook-echo
+pack: tutorials
+description: "A simple webhook rule to illustrate rules"
+enabled: true
+
+trigger:
+  type: core.st2.webhook
+  parameters:
+    url: tutorials
+
+criteria:
+  trigger.body.name:
+    type: equals
+    pattern: Rules
+
+action:
+  ref: core.echo
+  parameters:
+    message: "{{ trigger }}"
